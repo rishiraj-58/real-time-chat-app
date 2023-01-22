@@ -14,9 +14,9 @@ app.use(express.json())
 dotenv.config()
 connectDB()
 
-// app.get("/", (req, res) => {
-//     res.send("API is Running Successfully")
-// })
+app.get("/", (req, res) => {
+    res.send("API is Running Successfully")
+})
 
 app.use('/api/user',userRoutes)
 app.use('/api/chat',chatRoutes)
@@ -24,19 +24,19 @@ app.use('/api/message',messageRoutes)
 
 // -------------------------- DEPLOYMENT -------------------------------
 
-const __dirname1 = path.resolve()
-if(process.env.NODE_ENV == "production"){
-    app.use(express.static(path.join(__dirname1, "frontend/build")))
+// const __dirname1 = path.resolve()
+// if(process.env.NODE_ENV == "production"){
+//     app.use(express.static(path.join(__dirname1, "frontend/build")))
 
-    app.get('*', (req,res) => {
-        res.sendFile(path.resolve(__dirname1, "frontend","build", "index.html"))
-    })
-}else {
-    app.get("/", (req, res) => {
-        console.log(process.env.NODE_ENV)
-        res.send("API is Running Successfully")
-    })
-}
+//     app.get('*', (req,res) => {
+//         res.sendFile(path.resolve(__dirname1, "frontend","build", "index.html"))
+//     })
+// }else {
+//     app.get("/", (req, res) => {
+//         console.log(process.env.NODE_ENV)
+//         res.send("API is Running Successfully")
+//     })
+// }
 
 // -------------------------- DEPLOYMENT -------------------------------
 
